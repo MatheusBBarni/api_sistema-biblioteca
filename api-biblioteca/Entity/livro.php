@@ -14,6 +14,21 @@
          $this->conn = $db;
      }
 
+     function read(){
+
+      // select all query
+      $query = "SELECT
+                  l.id_livro, l.nome_livro, l.nome_autor, l.categoria_livro, l.status_livro FROM ". $this->table_name . " l ORDER BY l.nome_livro DESC";
+
+      // prepare query statement
+      $stmt = $this->conn->prepare($query);
+
+      // execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+
   }
 
  ?>

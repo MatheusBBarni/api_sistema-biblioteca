@@ -3,8 +3,8 @@
   header("Access-Control-Allow-Origin: *");
   header("Content-Type: application/json; charset=UTF-8");
 
-  include_once '../connection.php';
-  include_once '../Entity/livro.php';
+  include_once '../config/database.php';
+  include_once '../objects/livro.php';
 
   $database = new Database();
   $db = $database->getConnection();
@@ -14,7 +14,6 @@
   $stmt = $livro->read();
   $num = $stmt->rowCount();
 
-// check if more than 0 record found
   if($num>0){
 
     $livros_arr=array();
@@ -38,7 +37,7 @@
 
     echo json_encode($livros_arr);
   } else {
-    
+
     http_response_code(404);
 
     echo json_encode(
