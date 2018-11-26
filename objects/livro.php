@@ -84,6 +84,52 @@
       return false;
     }
 
+    function delete(){
+ 
+        $query = "DELETE FROM " . $this->table_name . " WHERE id_livro = ?";
+     
+        $stmt = $this->conn->prepare($query);
+     
+        $this->id=htmlspecialchars(strip_tags($this->id_livro));
+     
+        $stmt->bindParam(1, $this->id_livro);
+     
+        if($stmt->execute()){
+            return true;
+        }
+     
+        return false;
+         
+    }
+
+    function search($keywords){
+ 
+        $query = "SELECT
+                    l.nome_livro, l.id_livro, 
+                    l.nnome_autor, l.categoria_livro, l.status_livro
+                FROM
+                    " . $this->table_name . " l
+                WHERE
+                    l.nome_livro LIKE ? OR l.nome_autor LIKE ? OR l.categoria_livro LIKE ?
+                ORDER BY
+                    l.id_livro DESC";
+     
+        $stmt = $this->conn->prepare($query);
+     
+        $keywords=htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+     
+        $stmt->bindParam(1, $keywords);
+        $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
+     
+        $stmt->execute();
+     
+        return $stmt;
+    }
+
+    
+
   }
 
  ?>
