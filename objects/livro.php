@@ -86,7 +86,7 @@
 
     function delete(){
  
-        $query = "DELETE FROM " . $this->table_name . " WHERE id_livro = ?";
+        $query = "DELETE FROM " . $this->table_nome_livro . " WHERE id_livro = ?";
      
         $stmt = $this->conn->prepare($query);
      
@@ -108,7 +108,7 @@
                     l.nome_livro, l.id_livro, 
                     l.nnome_autor, l.categoria_livro, l.status_livro
                 FROM
-                    " . $this->table_name . " l
+                    " . $this->table_nome_livro . " l
                 WHERE
                     l.nome_livro LIKE ? OR l.nome_autor LIKE ? OR l.categoria_livro LIKE ?
                 ORDER BY

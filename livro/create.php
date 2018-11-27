@@ -7,7 +7,7 @@
   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
   include_once '../config/database.php';
-  include_once '../objects/product.php';
+  include_once '../objects/livro.php';
 
   $database = new Database();
   $db = $database->getConnection();
@@ -35,12 +35,12 @@
 
           http_response_code(503);
 
-          echo json_encode(array("message" => "Não foi possivel adicionar o livro."));
+          echo json_encode(array("message" => "Nao foi possivel adicionar o livro."));
       }
   } else {
 
       http_response_code(400);
 
-      echo json_encode(array("message" => "Não foi possivel adicionar o livro, falta dados."));
+      echo json_encode(array("message" => "Nao foi possivel adicionar o livro, falta dados."));
     }
 ?>

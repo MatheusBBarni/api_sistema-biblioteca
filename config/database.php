@@ -1,5 +1,5 @@
 <?php
-  class Connection {
+  class Database {
     private $host = "localhost";
     private $db_name = "sistema_biblioteca";
     private $username = "root";
